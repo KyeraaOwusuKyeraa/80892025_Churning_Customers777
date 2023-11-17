@@ -40,4 +40,9 @@ payment_method = st.selectbox('Payment Method', ['Electronic check', 'Bank trans
 if st.button('Predict Churn Probability'):
     prediction = predict(tenure, monthly_charges, total_charges, internet_service, online_security, device_protection, streaming_tv, tech_support, contract, payment_method)
     prediction_probability = prediction * 100
-    st.success('Churn Probability: {}%'.format(prediction_probability))
+
+    # Save the prediction result to a file
+    with open('output.txt', 'w', encoding='utf-8') as file:
+        file.write(f'Churn Probability: {prediction_probability}%')
+
+    st.success(f'Churn Probability: {prediction_probability}% Result saved to "output.txt"')
