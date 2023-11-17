@@ -2,7 +2,9 @@ import tensorflow as tf
 from tensorflow.keras.models import load_model
 import streamlit as st
 
+# Load the model outside the function to avoid loading it on every prediction
 model = load_model('model.h5')
+
 def predict(tenure, monthly_charges, total_charges, internet_service, online_security, device_protection, streaming_tv, tech_support, contract, payment_method):
     # Normalize the input data
     data = {
